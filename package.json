@@ -1,0 +1,93 @@
+{
+  "name": "codestackaI",
+  "displayName": "gpt-copilot",
+  "description": "Find snippets codes from Stackoverflow and ChatGPT",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.77.0"
+  },
+  "categories": [
+    "Snippets",
+    "Programming Languages"
+  ],
+  "keywords": [
+		"code-suggestion",
+		"copilot",
+		"code-inference"
+	],
+  "license": "MIT",
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+		"configuration": {
+			"title": "codeStackAI",
+			"type": "object",
+			"properties": {
+				"codeStackAI.settings.sites.stackoverflow": {
+					"title": "stackoverflow.com",
+					"description": "Enable searching code in StackOverflow",
+					"type": "boolean",
+					"default": true
+				},
+				"codeStackAI.settings.sites.githubGist": {
+					"title": "gist.github.com",
+					"description": "Enable searching code in Github Gists",
+					"type": "boolean",
+					"default": false
+				},
+				"codeStackAI.settings.maxResults": {
+					"type": "integer",
+					"description": "Limit the max number of results",
+					"default": 12
+				},
+				"codeStackAI.settings.openai.apiKey": {
+					"title": "OpenAI API Key",
+					"description": "API Key for OpenAI's ChatGPT",
+					"type": "string",
+					"default": ""
+				 }
+			}
+		}
+	},
+	"commands":{
+			"command": "codeStackAI.openSettings",
+			"title": "Open codeStackAI Settings"
+	},
+
+  "scripts": {
+    "vscode:prepublish": "yarn run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.77.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "eslint": "^8.37.0",
+    "glob": "^9.3.4",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.5",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.77.0",
+    "webpack-cli": "^5.0.1",
+    "@vscode/test-electron": "^2.3.0"
+  },
+  "dependencies": {
+		"@types/jsdom": "^21.1.1",
+		"@vscode/textbuffer": "^1.0.0",
+		"@vscode/vsce": "^2.18.0",
+		"jsdom": "^21.1.1",
+		"linkedom": "^0.14.25",
+		"node-fetch": "^3.3.1",
+	  "vsce": "^2.15.0"
+	}
+}
